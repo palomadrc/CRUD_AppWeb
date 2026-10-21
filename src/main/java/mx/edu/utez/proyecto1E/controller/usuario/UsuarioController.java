@@ -21,7 +21,6 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
-    // --- Métodos que ya tenías ---
 
     @GetMapping
     public ResponseEntity<List<Usuario>> getallUsers() {
@@ -37,9 +36,7 @@ public class UsuarioController {
                 .body(usuarioService.createUser(payload));
     }
 
-    // --- Métodos agregados ---
 
-    // 1. Consultar usuario por ID (/usuario/{id})
     @GetMapping("/{id}")
     public ResponseEntity<Usuario> getUserById(@PathVariable Long id) {
         return ResponseEntity
@@ -47,7 +44,6 @@ public class UsuarioController {
                 .body(usuarioService.getUserById(id));
     }
 
-    // 2. Activar / desactivar usuario (/usuario/{id}/estado?enable=true)
     @PatchMapping("/{id}/estado")
     public ResponseEntity<Usuario> changeStatus(@PathVariable Long id, @RequestParam boolean enable) {
         return ResponseEntity
@@ -55,7 +51,6 @@ public class UsuarioController {
                 .body(usuarioService.changeUserStatus(id, enable));
     }
 
-    // 3. Actualizar username y descripcion (/usuario/{id})
     @PutMapping("/{id}")
     public ResponseEntity<Usuario> updateUser(@PathVariable Long id, @Valid @RequestBody RequestUpdateUsuarioDto payload) {
         return ResponseEntity
